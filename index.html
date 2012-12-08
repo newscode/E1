@@ -15,70 +15,6 @@
     <script>
       var map;
 
-      function E1map() {
-      var E1coords = [
-          new google.maps.LatLng(31.766121,35.289116),
-          new google.maps.LatLng(31.780423,35.288429),
-          new google.maps.LatLng(31.783633,35.289116),
-          new google.maps.LatLng(31.794139,35.295296),
-          new google.maps.LatLng(31.807853,35.305939),
-          new google.maps.LatLng(31.811937,35.292206),
-          new google.maps.LatLng(31.801725,35.260963),
-          new google.maps.LatLng(31.800558,35.261650),
-          new google.maps.LatLng(31.800558,35.263023),
-          new google.maps.LatLng(31.801142,35.264740),
-          new google.maps.LatLng(31.800267,35.266800),
-          new google.maps.LatLng(31.800850,35.270233),
-          new google.maps.LatLng(31.800267,35.271950),
-          new google.maps.LatLng(31.796765,35.271950),
-          new google.maps.LatLng(31.795014,35.270233),
-          new google.maps.LatLng(31.792680,35.269890),
-          new google.maps.LatLng(31.790345,35.269890),
-          new google.maps.LatLng(31.787719,35.269890),
-          new google.maps.LatLng(31.786260,35.271263),
-          new google.maps.LatLng(31.785092,35.269547),
-          new google.maps.LatLng(31.783341,35.266457),
-          new google.maps.LatLng(31.781590,35.265427),
-          new google.maps.LatLng(31.780423,35.267830),
-          new google.maps.LatLng(31.784217,35.275040),
-          new google.maps.LatLng(31.783633,35.279846),
-          new google.maps.LatLng(31.779547,35.280533),
-          new google.maps.LatLng(31.778380,35.278130),
-          new google.maps.LatLng(31.778380,35.275726),
-          new google.maps.LatLng(31.776921,35.274696),
-          new google.maps.LatLng(31.775461,35.276756),
-          new google.maps.LatLng(31.773126,35.275040),
-          new google.maps.LatLng(31.772543,35.277443),
-          new google.maps.LatLng(31.771667,35.279160),
-          new google.maps.LatLng(31.772251,35.280876),
-          new google.maps.LatLng(31.772835,35.284996),
-          new google.maps.LatLng(31.775534,35.286283),
-          new google.maps.LatLng(31.773199,35.288429),
-          new google.maps.LatLng(31.777504,35.286498),
-          new google.maps.LatLng(31.777504,35.287013),
-          new google.maps.LatLng(31.776191,35.287013),
-          new google.maps.LatLng(31.774294,35.287957),
-          new google.maps.LatLng(31.774440,35.287142),
-          new google.maps.LatLng(31.773820,35.286970),
-          new google.maps.LatLng(31.771995,35.288215),
-          new google.maps.LatLng(31.771083,35.288258),
-          new google.maps.LatLng(31.769770,35.288215),
-          new google.maps.LatLng(31.767654,35.288386),
-          new google.maps.LatLng(31.767216,35.288386),
-          new google.maps.LatLng(31.766450,35.288858)
-          ];
-      var polyOptions = {
-          path: E1coords,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1,
-          strokeWeight: 1,
-          fillColor: "blue"
-          }
-      return new google.maps.Polyline(polyOptions);
-      }
-      
-
-
       function initialize() {
         var mapOptions = {
           zoom: 8,
@@ -88,12 +24,18 @@
         map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
       
 
-        // http://www.geocodezip.com/geoxml3_test/world_countries_kml.xml
-        kmlLayer = new google.maps.KmlLayer('http://www.inaturalist.org/places/geometry/11730.kml', {preserveViewport: true, suppressInfoWindows: true});
-        kmlLayer.setMap(map);
+        westbankLayer = new google.maps.KmlLayer(
+                                            'https://raw.github.com/newscode/E1/master/west-bank.kml', 
+                                            { preserveViewport: true, suppressInfoWindows: true }
+                                            );
+        westbankLayer.setMap(map);
 
-        E1 = E1map();
-        E1.setMap(map);
+        e1Layer = new google.maps.KmlLayer(
+                                            'https://raw.github.com/newscode/E1/master/E1.kml', 
+                                            { preserveViewport: true, suppressInfoWindows: true }
+                                            );
+        e1Layer.setMap(map);
+
       }
 
       google.maps.event.addDomListener(window, 'load', initialize);
